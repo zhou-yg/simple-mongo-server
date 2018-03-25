@@ -44,18 +44,6 @@ app.use(koaBody({
     uploadDir: __dirname
   }
 }));
-
-app.use(mongoMap({
-  url: 'mongodb://localhost:27017',
-  dbName: process.env.DB_NAME || 'sms',
-}))
-
-app.keys = ['zhouyg','smart'];
-
-app.use(koaSession({
-  maxAge:86400*1000,
-},app));
-
 app.use(function(ctx, next) {
   // if (/\/api\//.test(ctx.url)) {
   //   ctx.set("Access-Control-Allow-Origin", "*");
@@ -68,7 +56,19 @@ app.use(function(ctx, next) {
 
   return next();
 })
-// 
+
+app.use(mongoMap({
+  url: 'mongodb://localhost:27017',
+  dbName: process.env.DB_NAME || 'sms',
+}))
+
+app.keys = ['zhouyg','smart'];
+
+app.use(koaSession({
+  maxAge:86400*1000,
+},app));
+
+//
 // app.use(router.routes());
 // app.use(router.allowedMethods());
 
