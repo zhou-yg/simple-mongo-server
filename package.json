@@ -1,0 +1,33 @@
+{
+  "name": "simple-mongo-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhou-yg/simple-mongo-server.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/zhou-yg/simple-mongo-server/issues"
+  },
+  "homepage": "https://github.com/zhou-yg/simple-mongo-server#readme",
+  "dependencies": {
+    "koa": "^2.3.0",
+    "koa-body": "^2.3.0",
+    "koa-convert": "^1.2.0",
+    "koa-ejs": "^4.1.0",
+    "koa-logger": "^3.0.1",
+    "koa-router": "^7.2.1",
+    "koa-session": "^5.5.0",
+    "koa-static": "^4.0.1",
+    "koa-static2": "^0.1.8",
+    "lodash": "^4.17.4",
+    "mongodb": "^3.0.1",
+    "query-string": "^6.0.0"
+  }
+}
