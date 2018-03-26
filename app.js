@@ -54,7 +54,14 @@ app.use(function(ctx, next) {
   ctx.set("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
   ctx.set("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
 
-  return next();
+  var {path, query, body, method} = ctx.request;
+  method = method.toUpperCase();
+
+  if (method === 'OPTIONS') {
+    ctx.status = 200;
+  } else {
+    return next();    
+  }
 })
 
 app.use(mongoMap({
