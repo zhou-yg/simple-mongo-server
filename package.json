@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "forever start bin/www.js",
+    "list": "forever list",
     "re-start": "forever restart bin/www.js"
   },
   "repository": {
