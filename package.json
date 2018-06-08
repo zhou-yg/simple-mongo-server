@@ -1,9 +1,10 @@
 {
   "name": "simple-mongo-server",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "node bin/www.js",
     "start": "forever start bin/www.js",
     "list": "forever list",
     "re-start": "forever restart bin/www.js"
@@ -21,16 +22,17 @@
   "dependencies": {
     "forever": "^0.15.3",
     "koa": "^2.3.0",
-    "koa-body": "^2.3.0",
-    "koa-convert": "^1.2.0",
-    "koa-ejs": "^4.1.0",
+    "koa-body": "^4.0.1",
     "koa-logger": "^3.0.1",
     "koa-router": "^7.2.1",
     "koa-session": "^5.5.0",
-    "koa-static": "^4.0.1",
-    "koa-static2": "^0.1.8",
+    "koa-static-cache": "^5.1.2",
     "lodash": "^4.17.4",
     "mongodb": "^3.0.1",
     "query-string": "^6.0.0"
+  },
+  "devDependencies": {
+    "moment": "^2.22.2",
+    "request": "^2.87.0"
   }
 }

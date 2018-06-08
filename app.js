@@ -8,8 +8,7 @@ var fs = require('fs');
 var path = require('path');
 
 var koa = require('koa');
-var ejsConfig = require('koa-ejs');
-var staticConfigCache = require('koa-static');
+var staticConfigCache = require('koa-static-cache');
 
 var logger = require('koa-logger');
 const koaBody = require('koa-body');
@@ -17,18 +16,19 @@ const koaBody = require('koa-body');
 const koaSession = require('koa-session');
 
 const mongoMap = require('./lib/mongoMap/server');
+const cdn = require('./lib/mongoMap/cdn');
 
 var app = new koa();
 
 app.use(logger());
 
-ejsConfig(app,{
-  root: path.join(__dirname, 'views'),
-  layout: '',
-  viewExt: 'html',
-  cache: false,
-  debug: true
-});
+// ejsConfig(app,{
+//   root: path.join(__dirname, 'views'),
+//   layout: '',
+//   viewExt: 'html',
+//   cache: false,
+//   debug: true
+// });
 
 app.use(function (ctx, next) {
   return next();
@@ -40,6 +40,7 @@ app.use(function (ctx, next) {
 // }));
 
 app.use(koaBody({
+  multipart: true,
   formidable:{
     uploadDir: __dirname
   }
@@ -60,10 +61,33 @@ app.use(function(ctx, next) {
   if (method === 'OPTIONS') {
     ctx.status = 200;
   } else {
-    return next();    
+    return next();
   }
 })
 
+const errorHandler = async (ctx, next) => {
+    try {
+        await next()
+    } catch (err) {
+        ctx.response.status = err.statusCode || err.status || 500
+        ctx.response.body = {
+            message: err.message,
+            success: false,
+        }
+        ctx.app.emit('error', err, ctx)
+    }
+}
+
+app.on('error', function (err) {
+    console.error(err)
+    console.error('app.js onError, error: ', err.message)
+})
+
+app.use(errorHandler);
+
+app.use(cdn({
+  dir: path.join(__dirname, './temp'),
+}));
 app.use(mongoMap({
   url: 'mongodb://localhost:27017',
   dbName: process.env.DB_NAME || 'sms',
