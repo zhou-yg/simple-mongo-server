@@ -15,6 +15,7 @@ const koaBody = require('koa-body');
 
 const koaSession = require('koa-session');
 
+const parse = require('./lib/mongoMap/parse');
 const mongoMap = require('./lib/mongoMap/server');
 const cdn = require('./lib/mongoMap/cdn');
 
@@ -22,27 +23,20 @@ var app = new koa();
 
 app.use(logger());
 
-// ejsConfig(app,{
-//   root: path.join(__dirname, 'views'),
-//   layout: '',
-//   viewExt: 'html',
-//   cache: false,
-//   debug: true
-// });
-
 app.use(function (ctx, next) {
   return next();
-})
+});
 
-// app.use(staticConfigCache(path.resolve(__dirname,'./public/'), {
-//   maxAge: 24 * 60 * 60,
-//   gzip:true,
-// }));
+app.use(staticConfigCache(path.resolve(__dirname, './public/'), {
+  dynamic: true,
+  gzip:true,
+}));
 
 app.use(koaBody({
   multipart: true,
+  patchKoa: true,
   formidable:{
-    uploadDir: __dirname
+    uploadDir: path.join(__dirname, './public'),
   }
 }));
 app.use(function(ctx, next) {
@@ -85,8 +79,10 @@ app.on('error', function (err) {
 
 app.use(errorHandler);
 
+app.use(parse());
+
 app.use(cdn({
-  dir: path.join(__dirname, './temp'),
+  dir: path.join(__dirname, './public'),
 }));
 app.use(mongoMap({
   url: 'mongodb://localhost:27017',

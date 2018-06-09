@@ -24,12 +24,15 @@
     "koa": "^2.3.0",
     "koa-body": "^4.0.1",
     "koa-logger": "^3.0.1",
+    "koa-multer": "^1.0.2",
     "koa-router": "^7.2.1",
     "koa-session": "^5.5.0",
     "koa-static-cache": "^5.1.2",
     "lodash": "^4.17.4",
     "mongodb": "^3.0.1",
-    "query-string": "^6.0.0"
+    "query-string": "^6.0.0",
+    "axios": "^0.18.0",
+    "shelljs": "^0.8.2"
   },
   "devDependencies": {
     "moment": "^2.22.2",
