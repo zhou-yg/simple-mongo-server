@@ -1,6 +1,6 @@
 {
   "name": "simple-mongo-server",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/zhou-yg/simple-mongo-server#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "forever": "^0.15.3",
     "koa": "^2.3.0",
     "koa-body": "^4.0.1",
@@ -31,7 +32,6 @@
     "lodash": "^4.17.4",
     "mongodb": "^3.0.1",
     "query-string": "^6.0.0",
-    "axios": "^0.18.0",
     "shelljs": "^0.8.2"
   },
   "devDependencies": {
