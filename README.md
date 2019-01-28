@@ -1,5 +1,19 @@
 # simple-mongo-server
 
+# using by docker
+
+> docker pull zhouyg/simpel-mongo-server
+
+> docker pull mongo
+
+> docker run -itd mogno
+
+> docker run -itd --link mongo:mongo -p 8880:8880 -p 8081:8081 --name sms zhouyg/simple-mongo-server
+
+# using by nodejs
+
+> npm run start
+
 # use case
 
 > [localhost]:[port]/[dbName]/[collectionName]/[method]/[key]/[value]
@@ -11,7 +25,6 @@
 ```
 
 > [localhost]:[port]/[dbName]/[collectionName]/[method]/[key] ? arg=[JSON_STRING]
-
 
 
 
@@ -47,7 +60,6 @@ const db =client('dbName', {
 db.collectionName(mongo_method, {});
 
 ```
-
 
 ## license
 

@@ -85,7 +85,7 @@ app.use(cdn({
   dir: path.join(__dirname, './public'),
 }));
 app.use(mongoMap({
-  url: 'mongodb://localhost:27017',
+  url: `mongodb://${process.env.MONGO_SERVER || 'localhost:27017'}`,
   dbName: process.env.DB_NAME || 'sms',
 }))
 
