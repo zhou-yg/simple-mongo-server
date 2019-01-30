@@ -34,11 +34,29 @@
 }
 ```
 
+## methods
+
 [localhost]:[port]/[dbName]/[collectionName]/[method] ? arg=[JSON_STRING]
 
 ```
 {
   arg: arg
+}
+```
+### update
+
+[localhost]:[port]/[dbName]/[collectionName]/update ? arg=[JSON_STRING]
+
+```
+{
+  arg: {
+    id: 1,
+  },
+  doc: {
+    $set: {
+      value: newValue,
+    }
+  },
 }
 ```
 
