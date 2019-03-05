@@ -8,17 +8,33 @@ const testFile = path.join(__dirname, '../package.json');
 const stream = fs.createReadStream(testFile);
 
 request({
-  url: 'http://localhost:8880/sms/test/insert',
+  url: 'http://localhost:8880/sms/x/insert',
   method: 'POST',
-  formData: {
+  form: {
     arg: JSON.stringify({
-      ke: 123,
+      ke: 0,
     }),
-    myfile: stream,
   },
 }, function (err, res, body) {
   if (err) {
     console.log(err);
   }
-  console.log(body);
+
+  request({
+    url: 'http://localhost:8880/sms/x/find',
+    method: 'POST',
+    json: {
+      cursor: {
+        limit: [100],
+        toArray: [],
+      },
+    },
+  }, function (err, res, body) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(body);
+
+
+  });
 });

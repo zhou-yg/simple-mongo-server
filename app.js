@@ -17,7 +17,7 @@ const koaSession = require('koa-session');
 
 const parse = require('./lib/mongoMap/parse');
 const mongoMap = require('./lib/mongoMap/server');
-const cdn = require('./lib/mongoMap/cdn');
+const cdn = require('./lib/mongoMap/fuck/cdn');
 
 var app = new koa();
 
