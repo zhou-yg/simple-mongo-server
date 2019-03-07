@@ -1,6 +1,6 @@
 FROM mongo-express
 
-MAINTAINER zhouyg zhou.y.g.890@email.com
+MAINTAINER zhouyg zhou.y.g.890@gmail.com
 
 WORKDIR  /
 
